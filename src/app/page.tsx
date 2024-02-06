@@ -1,6 +1,13 @@
+// import React from "react";
 import ServicesStatus from "./components/ServicesStatus";
+import { DateAndTime } from "./components/DateAndTime";
+
 
 export default function Home() {
+
+
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
     {/*Plan
@@ -16,7 +23,12 @@ export default function Home() {
     display bus stops near that location???
     go back to home page to search again
     */}
+
+    <div>
+      <DateAndTime />
     <ServicesStatus />
+    </div>
+
     </main>
   )
 }
