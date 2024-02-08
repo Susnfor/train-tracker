@@ -1,6 +1,8 @@
 // import React from "react";
-import ServicesStatus from "./components/ServicesStatus";
+import AllDisruptions from "./components/AllDisruptions";
 import { DateAndTime } from "./components/DateAndTime";
+import { LineStatus } from "./components/LineStatus";
+import { SearchLocation } from "./components/SearchLocation";
 
 
 export default function Home() {
@@ -24,9 +26,21 @@ export default function Home() {
     go back to home page to search again
     */}
 
+  
+
     <div>
+      <div className="border-2 border-black">
       <DateAndTime />
-    <ServicesStatus />
+      </div>
+      <div className="border-2 border-red-700">
+    <AllDisruptions />
+    </div>
+    <div className="border-2 border-green-600">
+    <LineStatus />
+    </div>
+    <div className="border-2 border-blue-600">
+    <SearchLocation />
+    </div>
     </div>
 
     </main>

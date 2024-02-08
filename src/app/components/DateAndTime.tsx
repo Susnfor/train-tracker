@@ -32,7 +32,7 @@ export const DateAndTime = () => {
         <div>
     <h1>Today&apos;s Date</h1>
           <p>{currentDate}</p>
-          <h2>{currentTime}</h2>
+          {/* <h2>{currentTime}</h2> */}
     
     </div>
     </div>
