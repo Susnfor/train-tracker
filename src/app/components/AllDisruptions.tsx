@@ -33,9 +33,9 @@ export default function AllDisruptions() {
       );
       const data: string[] = await res.json();
       setFromDate(data);
-      console.log(data);
+      // console.log(data);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       throw new Error(error);
     }
   }

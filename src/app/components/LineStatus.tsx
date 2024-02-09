@@ -13,9 +13,9 @@ export const LineStatus = () => {
       );
       const data: string[] = await res.json();
       setData(data);
-      console.log(data);
+      // console.log(data);
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       throw new Error(error);
     }
   }
