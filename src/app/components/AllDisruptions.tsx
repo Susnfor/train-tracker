@@ -53,7 +53,7 @@ export default function AllDisruptions() {
     <div>
     
       {/* Disruption Board */}
-      <h1>Latest Disruptions</h1>
+      <h1 className="text-center text-2xl">Latest Disruptions</h1>
       <div>
         {/* {data &&
           data.map((item: any, index: number) => {
@@ -75,12 +75,14 @@ export default function AllDisruptions() {
             // }
               
                 return (
-                  <div key={item.id}>
-                    <h1>{item.name}</h1>
-                    <h2>{item.lineStatuses[0].statusSeverityDescription}</h2>
-                    <h2>{item.lineStatuses[0].reason}</h2>
-                    <h2>{new Date(item.lineStatuses[0].validityPeriods[0].fromDate).toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit'
-})}</h2>
+                  <div key={item.id} className="collapse">
+                    <input type="checkbox" className="peer" /> 
+                    <div className="collapse-title bg-red-600 peer-checked:bg-error peer-checked:text-secondary-content">
+                    <h1 >{item.name}</h1>
+                    <h2>{item.lineStatuses[0].statusSeverityDescription} from <span>{new Date(item.lineStatuses[0].validityPeriods[0].fromDate).toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit'
+})}</span></h2>
+</div>
+                    <h2 className="collapse-content peer-checked:bg-error peer-checked:text-secondary-content" >{item.lineStatuses[0].reason}</h2>
                     
                 {/* More info section shows list of affected stops */}
                     </div>

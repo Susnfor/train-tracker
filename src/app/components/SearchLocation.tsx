@@ -2,6 +2,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
+
 export const SearchLocation = () => {
   const [data, setData] = useState<any>(null);
   const [location, setLocation] = useState<string>("");
@@ -111,7 +112,7 @@ export const SearchLocation = () => {
     <div>
       <section className="form">
         <h1>Search for Arrival Time</h1>
-        <div>
+        <div> 
           <label htmlFor="location">Location</label>
           <input
             type="text"
@@ -130,11 +131,9 @@ export const SearchLocation = () => {
             <option value="overground">Overground</option>
             <option value="tube">Tube</option>
             <option value="bus">Bus</option>
-            {/* <option value="national-rail">National Rail</option>
-        <option value="dlr">DLR</option>
-        <option value="tram">Tram</option>  */}
+
           </select>
-          <button onClick={() => fetchFromData()}>Search</button>
+          <button className="btn btn-primary" onClick={() => fetchFromData()}>Search</button>
         </div>
         <div>
           {data && showStops ? (
@@ -146,7 +145,7 @@ export const SearchLocation = () => {
                   <h2>Multiple Stops Found, Please click the one you want</h2>
                   {data.matches.map((item: any, index: number) => {
                     return (
-                      <button
+                      <button className="btn btn-primary"
                         onClick={() => StopPointSearchMultiple(item)}
                         key={index}
                       >

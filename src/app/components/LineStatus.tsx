@@ -34,11 +34,35 @@ export const LineStatus = () => {
         {
             data && data.map((item: any, index: number) => {
                 return (
-                    <div key={item.id}>
+                    <div key={item.id} className={
+                      item.name === "Bakerloo" ? 'bg-orange-800':
+                      item.name==='Central' ? 'bg-red-600' :  
+                      item.name==='Victoria' ? 'bg-sky-400' : 
+                      item.name==='Circle' ? 'bg-yellow-400' : 
+                      item.name==='District' ? 'bg-green-600' : 
+                      item.name==='DLR' ? 'bg-emerald-300' : 
+                      item.name==='Elizabeth line' ? 'bg-purple-600' :
+                      item.name==='Hammersmith & City' ? 'bg-pink-300' : 
+                      item.name==='Jubilee' ? 'bg-slate-500' : 
+                      item.name==='London Overground' ? 'bg-orange-600' : 
+                      item.name==='Metropolitan' ? 'bg-fuchsia-900' : 
+                      item.name==='Northern' ? 'bg-black' : 
+                      item.name==='Piccadilly' ? 'bg-blue-800' : 
+                      item.name==='Tram' ? 'bg-lime-400' : 
+                      item.name==='Waterloo & City' ? 'bg-cyan-500' : 
+
+                      'bg-none'}>
+
+                        <div className='text-white collapse'>
+                        <input type="checkbox" className="peer" /> 
+                        <div className='collapse-title peer-checked:text-secondary-content'>
+              
                         <h1>{item.name}</h1>
                         <h2>{item.lineStatuses[0].statusSeverityDescription}</h2>
-                        <h2>{item.lineStatuses[0].reason}</h2>
+                        </div>
+                        <h2 className='collapse-content peer-checked:text-secondary-content'>{item.lineStatuses[0].reason}</h2>
                         {/* More info section shows list of affected stops */}
+                        </div>
                     </div>
                 );
             })
