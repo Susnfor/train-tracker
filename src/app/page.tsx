@@ -28,25 +28,39 @@ export default function Home() {
   
 
     <div>
-      <div className="border-2 border-black">
+      <div 
+      // className="border-2 border-black"
+      >
       <DateAndTime />
       </div>
 
   <div className="grid grid-cols-2">
-    <div className="border-2 border-red-700">
-    <LineStatus />
-    </div>
-    <div className="border-2 border-green-600">
+    
+
+    <div>
+    <div 
+    // className="border-2 border-green-600"
+    >
       <AllDisruptions />
+    </div>
+    <div 
+    // className="border-2 border-blue-600"
+    >
+    <SearchLocation />
+    </div>
+
+    </div>
+
+    <div className="">
+    <LineStatus />
     </div>
   </div>
 
 
-    <div className="border-2 border-blue-600">
-    <SearchLocation />
-    </div>
-    </div>
+    
 
+
+    </div>
     </main>
   )
 }

@@ -30,7 +30,7 @@ export const LineStatus = () => {
     <div>
         <div>
             {/* Inspo: https://tubestatus.net/ css */}
-        <h1>Lines</h1>
+        {/* <h1>Lines</h1> */}
         {
             data && data.map((item: any, index: number) => {
                 return (
@@ -50,19 +50,26 @@ export const LineStatus = () => {
                       item.name==='Piccadilly' ? 'bg-blue-800' : 
                       item.name==='Tram' ? 'bg-lime-400' : 
                       item.name==='Waterloo & City' ? 'bg-cyan-500' : 
-
                       'bg-none'}>
 
                         <div className='text-white collapse'>
                         <input type="checkbox" className="peer" /> 
-                        <div className='collapse-title peer-checked:text-secondary-content'>
-              
-                        <h1>{item.name}</h1>
+
+
+
+                        <div className='collapse-title peer-checked:text-white-content flex'>
+
+                        <div>{item.lineStatuses[0].statusSeverityDescription === 'Good Service' ? <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> : <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>}</div>
+
+<div>
+                          <h1 className='text-4xl'>{item.name}</h1>
                         <h2>{item.lineStatuses[0].statusSeverityDescription}</h2>
                         </div>
-                        <h2 className='collapse-content peer-checked:text-secondary-content'>{item.lineStatuses[0].reason}</h2>
+                        </div>
+                        <h2 className='collapse-content peer-checked:text-white-content'>{item.lineStatuses[0].reason}</h2>
                         {/* More info section shows list of affected stops */}
                         </div>
+
                     </div>
                 );
             })

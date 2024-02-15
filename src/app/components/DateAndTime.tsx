@@ -28,7 +28,7 @@ export const DateAndTime = () => {
 
 
   return (
-    <div className='flex justify-center p-5'>
+    <div className='flex justify-center p-5 text-center text-2xl'>
         <div className='bg-black rounded w-5/12 text-slate-50 p-5'>
     <h1>Today&apos;s Date</h1>
           <p>{currentDate}</p>
