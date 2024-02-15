@@ -28,9 +28,7 @@ export default function Home() {
   
 
     <div>
-      <div 
-      // className="border-2 border-black"
-      >
+      <div >
       <DateAndTime />
       </div>
 
@@ -38,20 +36,16 @@ export default function Home() {
     
 
     <div>
-    <div 
-    // className="border-2 border-green-600"
-    >
+    <div >
       <AllDisruptions />
     </div>
-    <div 
-    // className="border-2 border-blue-600"
-    >
+    <div >
     <SearchLocation />
     </div>
 
     </div>
 
-    <div className="">
+    <div>
     <LineStatus />
     </div>
   </div>
