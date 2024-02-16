@@ -15,12 +15,12 @@ export const DateAndTime = () => {
 
   const [currentDate, setCurrentDate]: any = useState(getDate());
   const [currentTime, setCurrentTime]: Array<any> = useState(
-    new Date().toLocaleTimeString()
+   
   );
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(new Date().toLocaleTimeString('en-US', {  hour12: false }));
+      setCurrentTime(new Date().toLocaleTimeString('en-US', {  hour12: true }));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -32,7 +32,7 @@ export const DateAndTime = () => {
         <div className='bg-black rounded w-5/12 text-slate-50 p-5'>
     <h1>Today&apos;s Date</h1>
           <p>{currentDate}</p>
-          <h2 className=''>{currentTime}</h2>
+          <h2  className=''>{currentTime}</h2>
     
     </div>
     </div>

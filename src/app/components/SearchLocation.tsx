@@ -15,6 +15,7 @@ export const SearchLocation = () => {
   const [stationData, setStationData] = useState<any>({});
   const [arrivalObject, setArrivalObject] = useState<any>([]);
 
+  const [searched, setSearched] = useState<boolean>(false);
 
   function secondsToMinutes(seconds: number) {
     return Math.floor(seconds / 60);
@@ -28,6 +29,7 @@ export const SearchLocation = () => {
       );
       const data: any = await res.json();
       setData(data);
+      setSearched(true);
       // setStopPoint(data.matches[0].id);
 
       // console.log(`The stopoint is set to ${stopPoint}`)
@@ -181,9 +183,9 @@ export const SearchLocation = () => {
                     <div key={index} className="flex flex-col justify-center items-center  ">
                       <h1>{item}</h1>
                       {/* if any values == NaN dont show them*/}
-                      <h2>{isNaN(arrivalObject[item][0]) === true ? '': secondsToMinutes(arrivalObject[item][0]) + ' min'}</h2>
-                      <h2>{isNaN(arrivalObject[item][1]) === true ? '': secondsToMinutes(arrivalObject[item][1]) + ' min'}</h2>
-                      <h2>{isNaN(arrivalObject[item][2]) === true ? '': secondsToMinutes(arrivalObject[item][2]) + ' min'}</h2>
+                      <h2>{isNaN(arrivalObject[item][0]) === true ? '': secondsToMinutes(arrivalObject[item][0]) === 0 ?  'due' : secondsToMinutes(arrivalObject[item][0]) + ' min'}</h2>
+                      <h2>{isNaN(arrivalObject[item][1]) === true ? '': secondsToMinutes(arrivalObject[item][1]) === 0 ?  'due' : secondsToMinutes(arrivalObject[item][1]) + ' min'}</h2>
+                      <h2>{isNaN(arrivalObject[item][2]) === true ? '': secondsToMinutes(arrivalObject[item][0]) === 0 ?  'due' : secondsToMinutes(arrivalObject[item][2]) + ' min'}</h2>
                     </div>
                   
                   );
@@ -194,12 +196,12 @@ export const SearchLocation = () => {
       
           
           }
-          {/*if arrivalObject is empty, show no stop times available */}
-          {Object.keys(arrivalObject).length <= 0 ? (
+          {/*if arrivalObject is empty, show no stop times available , maybe put something to check if search button clicked*/}
+          {Object.keys(arrivalObject).length <= 0 && searched ? (
             <div className="flex justify-center items-center ">
             <div className="alert alert-error w-5/12 ">
                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span className="text-center"> No stop times available, try another station  </span>
+          <span className="text-center"> No stop times available  </span>
           </div>
           </div>
           ): ''}
