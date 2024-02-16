@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TFL Train Tracker
 
-## Getting Started
 
-First, run the development server:
+## Demo link:
+Access the demo [here](https://train-tracker.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Content:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [About The App](#about-the-app)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Setup](#setup)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## About The App
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Train Tracker is more than just a train information app – it's a solution born out of my own frustrations with missed disruptions and the need for a seamless travel experience on the London Underground (TfL). As a commuter, I understand the importance of staying in the loop, and Train Tracker is here to make your journey stress-free and efficient.
 
-## Learn More
+### Key Features:
 
-To learn more about Next.js, take a look at the following resources:
+**Real-Time Insights:** Tired of missing disruptions? Train Tracker keeps you in the know about the live operational status of all TfL train lines, ensuring you're never caught off guard by delays or unexpected changes.
+**One-Page Convenience:** Say goodbye to navigating through multiple pages to find what you need. Train Tracker simplifies your experience by providing all the information you need on one page. Quickly check service statuses, disruptions, and even search for the next train arrival time at your station without the hassle.
+**User-Friendly Design:** Designed with commuters in mind, Train Tracker offers an intuitive and friendly interface, making it easy for you to access the information that matters most.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Embark on a smoother London Underground journey with Train Tracker – a personal project to make your daily commute a little easier and a lot more enjoyable.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Screenshots
 
-## Deploy on Vercel
+<img width="1403" alt="application screenshot, showing interface" src="https://github.com/Susnfor/train-tracker/assets/97429786/f2ce8ec8-fdee-4606-978a-01944ea8313c">
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies
+I used `next.js`, `tailwind css`, `daisyui` and `typescript` 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Setup
+- download or clone the repository
+- run `npm install`
+- ...
+
