@@ -33,10 +33,10 @@ Embark on a smoother London Underground journey with Train Tracker – a persona
 
 
 ## Technologies
-I used `next.js`, `tailwind css`, `daisyui` and `typescript` 
+Technologies + Frameworks used: `next.js`, `react`, `tailwind css`, `daisyui`, `typescript` 
 
 ## Setup
 - download or clone the repository
-- run `npm install`
-- ...
+- install dependencies `npm install`
+- run `npm run dev`
 
