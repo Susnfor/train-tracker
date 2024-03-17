@@ -1,6 +1,7 @@
 "use client"
-import React from 'react'
 import { useEffect, useState } from "react";
+
+
 
 export const LineStatus = () => {
     const [data, setData] = useState<any>(null);
@@ -27,14 +28,16 @@ export const LineStatus = () => {
 
 
   return (
-    <div>
-        <div>
-            {/* Inspo: https://tubestatus.net/ css */}
-        {/* <h1>Lines</h1> */}
+    <div className="p-0 m-0" >
+        <div className=" flex flex-col items-center mb-5">
+
         {
             data && data.map((item: any, index: number) => {
                 return (
                     <div key={item.id} className={
+                      ` pb-1 w-10/12`}>
+
+                        <div className={`text-white collapse ${
                       item.name === "Bakerloo" ? 'bg-orange-800':
                       item.name==='Central' ? 'bg-red-600' :  
                       item.name==='Victoria' ? 'bg-sky-400' : 
@@ -50,9 +53,7 @@ export const LineStatus = () => {
                       item.name==='Piccadilly' ? 'bg-blue-800' : 
                       item.name==='Tram' ? 'bg-lime-400' : 
                       item.name==='Waterloo & City' ? 'bg-cyan-500' : 
-                      'bg-none'}>
-
-                        <div className='text-white collapse'>
+                      'bg-none'}`}>
                         <input type="checkbox" className="peer" /> 
 
 

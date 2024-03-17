@@ -53,20 +53,12 @@ export default function AllDisruptions() {
     <div>
     
       {/* Disruption Board */}
-      <div className="alert bg-slate-800 text-white mb-3 " role='alert'>
+      <div className="alert bg-slate-800 text-white mb-3 md:w-full dark:border-blue-900 " role='alert'>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       <span className="text-center text-1xl">Latest Disruptions</span>
       </div>
-      <div className="overflow-y-scroll h-72 mx-3">
-        {/* {data &&
-          data.map((item: any, index: number) => {
-            return (
-              <div key={item.id}>
-                <h1>{item.closureText}</h1>
-                <h2>{item.description}</h2>
-              </div>
-            );
-          })} */}
+      <div className="overflow-y-scroll h-72">
+      
 
 {
             fromDate && fromDate.map((item: any) => {
@@ -78,10 +70,10 @@ export default function AllDisruptions() {
             // }
               
                 return (
-                  <div className="p-2 ">
-                  <div key={item.id} className="collapse ">
+                  <div className="p-1 text-white ">
+                  <div key={item.id} className="collapse border-white dark:border-blue-900 border">
                     <input type="checkbox" className="peer" /> 
-                    <div className="collapse-title border-red-700 border-8 peer-checked:border-0 peer-checked:bg-error peer-checked:text-white-content">
+                    <div className="collapse-title   peer-checked:bg-error peer-checked:text-white-content">
                     <h1 >{item.name}</h1>
                     <h2>{item.lineStatuses[0].statusSeverityDescription} from <span className="font-bold">{new Date(item.lineStatuses[0].validityPeriods[0].fromDate).toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit'
 })}</span></h2>

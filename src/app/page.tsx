@@ -3,6 +3,8 @@ import AllDisruptions from "./components/AllDisruptions";
 import { DateAndTime } from "./components/DateAndTime";
 import { LineStatus } from "./components/LineStatus";
 import { SearchLocation } from "./components/SearchLocation";
+import Image from 'next/image'
+import bg from './assets/bgtrain.jpeg'
 
 export default function Home() {
 
@@ -10,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="mb-24 flex justify-center top-0 relative">
     {/*Plan
     TFL/ Train-Bus Tracker
     import the api 
@@ -24,19 +26,21 @@ export default function Home() {
     display bus stops near that location???
     go back to home page to search again
     */}
-
+    <div className="fixed w-full ">
+    <Image src={bg} alt="bg" className="invisible sm:visible w-full object-cover object-center absolute  brightness-50"/ >
+    </div>
   
 
-    <div>
+    <div className="z-10 bg-white/10 backdrop-blur-md shadow-xl rounded-md w-11/12 my-16">
       <div >
       <DateAndTime />
       </div>
 
-  <div className="grid grid-cols-2">
+  <div className=" flex justify-center md:flex-row flex-col ">
     
 
     <div>
-    <div >
+    <div className="px-3">
       <AllDisruptions />
     </div>
     <div >

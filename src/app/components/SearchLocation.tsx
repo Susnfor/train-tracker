@@ -108,10 +108,9 @@ export const SearchLocation = () => {
 
   return (
     <div>
-      <section className="form border-blue-600  dark:border-blue-900 border-4 mx-4 mt-10 p-2 ">
-        <h1 className="text-center">Search for Arrival Time</h1>
-        <div className="flex mb-5 justify-center "> 
-
+      <section className="form bg-slate-800 rounded-lg  dark:border-blue-900 border mx-4 my-10 p-2 ">
+        <h1 className="text-center text-white">Search for Arrival Time</h1>
+        <div className="flex flex-col sm:flex-row mb-5 items-center"> 
           <label  className="input input-bordered flex items-center gap-2 max-w-xs" htmlFor="location"> 
           <input
             type="text"
