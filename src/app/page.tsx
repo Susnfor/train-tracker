@@ -7,10 +7,6 @@ import Image from 'next/image'
 import bg from './assets/bgtrain.jpeg'
 
 export default function Home() {
-
-
-
-
   return (
     <main className="mb-24 flex justify-center top-0 relative">
     {/*Plan
@@ -27,7 +23,7 @@ export default function Home() {
     go back to home page to search again
     */}
     <div className="fixed w-full ">
-    <Image src={bg} alt="bg" className="invisible sm:visible w-full object-cover object-center absolute  brightness-50"/ >
+    <Image src={bg} alt="bg" className="invisible sm:visible w-full object-cover object-center absolute  brightness-50" />
     </div>
   
 
