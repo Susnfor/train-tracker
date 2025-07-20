@@ -10,14 +10,14 @@ export const LineStatus = () => {
   async function fetchLineData() {
     try {
       const res = await fetch(
-        "https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=14f7f5ff5d64df2e88701cef2049c804"
+        `https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=${process.env.NEXT_PUBLIC_DISRUPTIONS_API_KEY}` 
       );
       const data: string[] = await res.json();
       setData(data);
-      // console.log(data);
-    } catch (error: any) {
-      // console.log(error);
-      throw new Error(error);
+      console.log(data);
+    } catch (error: JSON | any) {
+      console.log(error);
+      // throw new Error({'error': error} as any);
     }
   }
 
@@ -47,12 +47,18 @@ export const LineStatus = () => {
                       item.name==='Elizabeth line' ? 'bg-purple-600' :
                       item.name==='Hammersmith & City' ? 'bg-pink-300' : 
                       item.name==='Jubilee' ? 'bg-slate-500' : 
+                      item.name==='Liberty' ? 'bg-gray-500' :
+                      item.name==='Lioness' ? 'bg-yellow-500' :
                       item.name==='London Overground' ? 'bg-orange-600' : 
                       item.name==='Metropolitan' ? 'bg-fuchsia-900' : 
+                      item.name==='Mildmay' ? 'bg-blue-500' :
                       item.name==='Northern' ? 'bg-black' : 
                       item.name==='Piccadilly' ? 'bg-blue-800' : 
+                      item.name==='Suffragette' ? 'bg-emerald-600' :
                       item.name==='Tram' ? 'bg-lime-400' : 
-                      item.name==='Waterloo & City' ? 'bg-cyan-500' : 
+                      item.name==='Waterloo & City' ? 'bg-cyan-500' :
+                      item.name==='Weaver' ? 'bg-fuchsia-900' :
+                      item.name==='Windrush' ? 'bg-red-600' :
                       'bg-none'}`}>
                         <input type="checkbox" className="peer" /> 
 
