@@ -25,7 +25,6 @@ export const SearchLocation = () => {
     try {
       const res = await fetch(
         `https://api.tfl.gov.uk/Stoppoint/Search/${location}?modes=${mode}`
-        // `https://api.tfl.gov.uk/StopPoint/Search?query=${location}&modes=${mode}&app_key=d7ea9b1b04bc415c9a83b3636e9b9213`
       );
       const data: any = await res.json();
       setData(data);
@@ -66,7 +65,7 @@ export const SearchLocation = () => {
       if (stopPoint) {
         //if stopPoint exists, fetch arrival data
         const res = await fetch(
-          `https://api.tfl.gov.uk/StopPoint/${stopPoint}/Arrivals?app_key=d7ea9b1b04bc415c9a83b3636e9b9213`
+          `https://api.tfl.gov.uk/StopPoint/${stopPoint}/Arrivals?app_key=${process.env.NEXT_PUBLIC_STOPPOINT_API_KEY}`
         );
         const data: string[] = await res.json();
         setArrivalData(data);

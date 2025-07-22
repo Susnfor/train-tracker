@@ -1,7 +1,23 @@
 "use client";
+import { get } from "http";
 import React, { useEffect, useState } from "react";
 
-export default function AllDisruptions() {
+
+// export const getServerSideProps = async () => {
+//   const res = await fetch(
+//     `https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=${process.env.NEXT_PUBLIC_DISRUPTION_API_KEY}`
+//   );
+//   const data: string[] = await res.json();
+//   console.log(`data is ${data}`)
+//   return { props: { 
+//     fromDate: data
+//   } };
+// }
+
+
+export default function AllDisruptions(
+  // {fromDate}: any
+) {
   //import the api
   //tube + national rail
   //live map?
@@ -14,22 +30,27 @@ export default function AllDisruptions() {
   const [fromDate, setFromDate] = useState<any>(null);
 
 
-  // async function fetchTrainData() {
-  //   try {
-  //     const res = await fetch(
-  //       "https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Disruption?app_key=d7ea9b1b04bc415c9a83b3636e9b9213"
-  //     );
-  //     const data: string[] = await res.json();
-  //     setData(data);
-  //   } catch (error: any) {
-  //     throw new Error(error);
-  //   }
-  // }
+  async function fetchTrainData() {
+    try {
+      const res = await fetch(
+        `https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Disruption?app_key=${process.env.NEXT_PUBLIC_STOPPOINT_API_KEY}`
+      );
+      const data: string[] = await res.json();
+      if (!data || data.length === 0) {
+        console.log("No disruptions found");
+        return;
+      }
+      setData(data);
+    } catch (error: any) {
+      console.log(error);
+      throw new Error(error);
+    }
+  }
 
   async function fetchFromDate() {
     try {
       const res = await fetch(
-        "https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=14f7f5ff5d64df2e88701cef2049c804"
+        `https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=${process.env.NEXT_PUBLIC_DISRUPTIONS_API_KEY}`
       );
       const data: string[] = await res.json();
       setFromDate(data);
@@ -43,8 +64,9 @@ export default function AllDisruptions() {
 
 
   useEffect(() => {
-    // fetchTrainData();
+    fetchTrainData();
     fetchFromDate();
+    // getServerSideProps();
 
   }, []);
 
