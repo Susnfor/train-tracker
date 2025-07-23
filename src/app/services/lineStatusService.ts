@@ -1,7 +1,7 @@
 import {get} from "@/app/lib/apiRequest";
 
 //types 
-interface ProcessedLineStatus {
+export interface ProcessedLineStatus {
     id: string;
     name: string;
     severity: string;

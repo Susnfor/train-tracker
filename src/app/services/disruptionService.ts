@@ -2,7 +2,7 @@ import { get } from '@/app/lib/apiRequest';
 
 //types 
 
-interface ProcessedDisruption {
+export interface ProcessedDisruption {
   id: string;
   name: string;
   status: string;
@@ -25,5 +25,5 @@ export const processDisruptions = (data: any[]): ProcessedDisruption[] => {
     reason: item.lineStatuses[0].reason || '',
     fromDate: new Date(item.lineStatuses[0].validityPeriods[0].fromDate.toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit'
 }))
-  }));
+  })).sort((a, b) => a.severity - b.severity);
 }

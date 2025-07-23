@@ -1,17 +1,17 @@
 import {post} from '@/app/lib/apiRequest';
 
 //types
-interface SearchQuery {
+export interface SearchQuery {
     location: string;
     mode?: string;
 }
 
-interface ProcessedSearchResponse {
+export interface ProcessedSearchResponse {
     id: string;
     name: string;
 }
 
-interface ProcessedStoppointArrival {
+export interface ProcessedStoppointArrival {
     stoppointId: string;
     destination: string;
     timeToStation: number;
