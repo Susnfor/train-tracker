@@ -1,21 +1,22 @@
 "use client";
 import React from "react";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import { useSearchController } from "../controllers/useSearchController";
 
 export const SearchLocation = () => {
-  const [data, setData] = useState<any>(null);
+  const { 
+    searchResults, 
+    arrivalObject, 
+    showStops, 
+    searched, 
+    loading, 
+    error, 
+    search, 
+    selectStop 
+  } = useSearchController();
+
   const [location, setLocation] = useState<string>("");
   const [mode, setMode] = useState<string>("overground"); //make this a dropdown // overground=default
-  const [showStops, setShowStops] = useState<boolean>(false);
-
-  // const [stopPoint, setStopPoint] = useState<any>("");
-  const [arrivalData, setArrivalData] = useState<any>(null);
-
-  const [stationData, setStationData] = useState<any>({});
-  const [arrivalObject, setArrivalObject] = useState<any>([]);
-
-  const [searched, setSearched] = useState<boolean>(false);
 
   function secondsToMinutes(seconds: number) {
     return Math.floor(seconds / 60);
@@ -23,27 +24,7 @@ export const SearchLocation = () => {
 
   async function fetchFromData() {
     try {
-      const res = await fetch(
-        `https://api.tfl.gov.uk/Stoppoint/Search/${location}?modes=${mode}`
-      );
-      const data: any = await res.json();
-      setData(data);
-      setSearched(true);
-      // setStopPoint(data.matches[0].id);
-
-      // console.log(`The stopoint is set to ${stopPoint}`)
-
-      if (data && data.total > 0) {
-        if (data.total > 1) {
-          setShowStops(true);
-          // return;
-        }
-
-        if (data.matches[0].id) {
-          StopPointArrival(data.matches[0].id);
-          // console.log(`StopPointArrival is called and stopPoint is set`)
-        }
-      }
+      await search({ location, mode });
     } catch (error: any) {
       throw new Error(error);
     }
@@ -51,66 +32,22 @@ export const SearchLocation = () => {
 
   function StopPointSearchMultiple(item: any) {
     try {
-      // setStopPoint(item.id);
-      setShowStops(false);
-      StopPointArrival(item.id);
-      // console.log(`StopPointSearchMultiple is called and stopPoint is set`)
+      selectStop(item.id);
     } catch (error: any) {
       throw new Error(error);
     }
   }
-
-  async function StopPointArrival(stopPoint: string) {
-    try {
-      if (stopPoint) {
-        //if stopPoint exists, fetch arrival data
-        const res = await fetch(
-          `https://api.tfl.gov.uk/StopPoint/${stopPoint}/Arrivals?app_key=${process.env.NEXT_PUBLIC_STOPPOINT_API_KEY}`
-        );
-        const data: string[] = await res.json();
-        setArrivalData(data);
-        console.log(`Arrival data is set to ${data}`)
-        console.log(data);
-        if (data) {
-          stationDataMap(data);
-        }
-      }
-
-
-    } catch (error: any) {
-      throw new Error(error);
-    }
-  }
-
-  const stationDataMap = (arrivalData: any) => {
-    try {
-      setStationData({});
-
-      //convert arrivalData into object, key is destination, value is time
-
-      arrivalData.forEach((item: any) => {
-        //loop through arrivalData create object
-        if (stationData[item.destinationName]) {
-          //if key exists, add time to station to array
-          stationData[item.destinationName].push(item.timeToStation);
-        } else {
-          //if key does not exist, create key and add time to station to array
-          stationData[item.destinationName] = [item.timeToStation];
-        }
-        console.log(stationData);
-      });
-      setArrivalObject(stationData);
-    } catch (error: any) {
-      throw new Error(error);
-    }
-  };
 
   return (
     <div>
       <section className="form bg-slate-800 rounded-lg  dark:border-blue-900 border mx-4 my-10 p-2 ">
         <h1 className="text-center text-white">Search for Arrival Time</h1>
-        <div className="flex flex-col sm:flex-row mb-5 items-center"> 
-          <label  className="input input-bordered flex items-center gap-2 max-w-xs" htmlFor="location"> 
+        
+        {/* Show error state */}
+        {error && <div className="text-center p-4 text-red-500">Error: {error}</div>}
+        
+        <div className="flex flex-col sm:flex-row mb-5 items-center">
+          <label  className="input input-bordered flex items-center gap-2 max-w-xs" htmlFor="location">
           <input
             type="text"
             className="grow" 
@@ -140,17 +77,19 @@ export const SearchLocation = () => {
 
           </select>
           </label>
-          <button className="btn btn-primary" onClick={() => fetchFromData()}>Search</button>
+          <button className="btn btn-primary" onClick={() => fetchFromData()} disabled={loading}>
+            {loading ? 'Searching...' : 'Search'}
+          </button>
         </div>
         <div>
-          {data && showStops ? (
+          {searchResults && showStops ? (
             <div>
               {/* <h1>Stops</h1> */}
 
-              {data.total > 1 ? (
+              {searchResults.total > 1 ? (
                 <div className="text-center ">
                   <h2 >Multiple Stops Found. Please Select A Stop</h2>
-                  {data.matches.map((item: any, index: number) => {
+                  {searchResults.matches.map((item: any, index: number) => {
                     return (
                       <button className="btn btn-primary mr-3 mb-3 text-white"
                         onClick={() => StopPointSearchMultiple(item)}
