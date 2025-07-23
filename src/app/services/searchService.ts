@@ -34,7 +34,7 @@ export const processSearchResponse = (data: any[]): ProcessedSearchResponse[] =>
 
 // now search for a stoppoint arrival times in the named location 
 export const searchStoppoint = async (stoppointId: string) => {
-    return post('api/stoppointArrival', { stoppointId });
+    return post('/api/stoppointArrival', { stoppointId });
 }
 export const processStoppointResponse = (data: any[]): ProcessedStoppointArrival[] => {
     return data.map((item) => ({

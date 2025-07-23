@@ -12,11 +12,11 @@ export interface ProcessedDisruption {
 }
 
 export const fetchDisruptions = async () => { 
-return get('api/allDisruptions');
+return get('/api/allDisruptions');
 }
 
 export const processDisruptions = (data: any[]): ProcessedDisruption[] => {
-  data = data.filter(item => item.lineStatuses[0]?.statusSeverity < 10); // Filter out items with severity less than 10
+  data = data.filter(item => item.lineStatuses[0]?.statusSeverity > 10); // Filter out items with severity less than 10
   return data.map((item) => ({
     id: item.id,
     name: item.name,

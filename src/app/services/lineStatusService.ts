@@ -10,7 +10,7 @@ export interface ProcessedLineStatus {
 
 //fetch line status data from the API using the get function
 export const fetchLineStatus = async () => {
-    return get('api/lineStatus');
+    return get('/api/lineStatus');
 }
 // process the line status data to match the ProcessedLineStatus type
 export const processLineStatus = (data: any[]): ProcessedLineStatus[] => {
