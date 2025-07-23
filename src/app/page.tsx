@@ -3,58 +3,62 @@ import AllDisruptions from "./components/AllDisruptions";
 import { DateAndTime } from "./components/DateAndTime";
 import { LineStatus } from "./components/LineStatus";
 import { SearchLocation } from "./components/SearchLocation";
-import Image from 'next/image'
-import bg from './assets/bgtrain.jpeg'
+import Image from "next/image";
+import bg from "./assets/bgtrain.jpeg";
 
 export default function Home() {
-  return (
-    <main className="mb-24 flex justify-center top-0 relative">
-    {/*Plan
-    TFL/ Train-Bus Tracker
-    import the api 
-    display the services / if down/  what problem
+	return (
+		<main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800">
+			{/* Background Image */}
+			<div className="fixed inset-0 z-0">
+				<Image
+					src={bg}
+					alt="Train background"
+					className="w-full h-full object-cover opacity-20 dark:opacity-10"
+					priority
+				/>
+			</div>
 
-    put in location/ train stop (drop down?)
-    try and find if there is a stop that includes that name
-    if multiple stops with that name, display all stops with that name
-    display trains at that stop and time
-    display if there are any delays
-    display bus stops near that location???
-    go back to home page to search again
-    */}
-    <div className="fixed w-full ">
-    <Image src={bg} alt="bg" className="invisible sm:visible w-full object-cover object-center absolute  brightness-50" />
-    </div>
-  
+			{/* Main Content */}
+			<div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
+				{/* Header */}
+				<div className="text-center mb-12">
+					<h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+						Train Tracker
+					</h1>
+					<p className="text-lg text-gray-600 dark:text-gray-300 font-medium">
+						Real-time London transport information
+					</p>
+				</div>
 
-    <div className="z-10 bg-white/10 backdrop-blur-md shadow-xl rounded-md w-11/12 my-16">
-      <div >
-      <DateAndTime />
-      </div>
+				{/* Date and Time Card */}
+				<div className="mb-8">
+					<DateAndTime />
+				</div>
 
-  <div className=" flex justify-center md:flex-row flex-col ">
-    
+				{/* Main Grid Layout */}
+				<div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+					{/* Left Column */}
+					<div className="xl:col-span-2 space-y-8">
+						{/* Disruptions Card */}
+						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 hover:shadow-3xl transition-all duration-500">
+							<AllDisruptions />
+						</div>
 
-    <div>
-    <div className="px-3">
-      <AllDisruptions />
-    </div>
-    <div >
-    <SearchLocation />
-    </div>
+						{/* Search Card */}
+						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-3xl transition-all duration-500">
+							<SearchLocation />
+						</div>
+					</div>
 
-    </div>
-
-    <div>
-    <LineStatus />
-    </div>
-  </div>
-
-
-    
-
-
-    </div>
-    </main>
-  )
+					{/* Right Column */}
+					<div className="xl:col-span-1">
+						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 sticky top-8 hover:shadow-3xl transition-all duration-500">
+							<LineStatus />
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	);
 }
