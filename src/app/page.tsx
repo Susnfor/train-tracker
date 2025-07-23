@@ -22,7 +22,7 @@ export default function Home() {
 			{/* Main Content */}
 			<div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
 				{/* Header */}
-				<div className="text-center mb-12">
+				<div className="text-center mb-8">
 					<h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
 						Train Tracker
 					</h1>
@@ -31,30 +31,32 @@ export default function Home() {
 					</p>
 				</div>
 
-				{/* Date and Time Card */}
+				{/* Primary Action: Search - Most Important */}
 				<div className="mb-8">
-					<DateAndTime />
+					<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-3xl transition-all duration-500">
+						<SearchLocation />
+					</div>
 				</div>
 
-				{/* Main Grid Layout */}
+				{/* Secondary Information Grid */}
 				<div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-					{/* Left Column */}
+					{/* Left Column: Status Information */}
 					<div className="xl:col-span-2 space-y-8">
-						{/* Disruptions Card */}
+						{/* Line Status - Quick Overview */}
+						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 hover:shadow-3xl transition-all duration-500">
+							<LineStatus />
+						</div>
+
+						{/* Disruptions - Detailed Information */}
 						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 hover:shadow-3xl transition-all duration-500">
 							<AllDisruptions />
 						</div>
-
-						{/* Search Card */}
-						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-3xl transition-all duration-500">
-							<SearchLocation />
-						</div>
 					</div>
 
-					{/* Right Column */}
+					{/* Right Column: Utility Information */}
 					<div className="xl:col-span-1">
 						<div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 sticky top-8 hover:shadow-3xl transition-all duration-500">
-							<LineStatus />
+							<DateAndTime />
 						</div>
 					</div>
 				</div>
