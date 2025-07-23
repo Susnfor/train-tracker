@@ -1,38 +1,20 @@
 "use client"
-import { useEffect, useState } from "react";
-
-
+import { useLineStatusController } from "../controllers/useLineStatusController";
 
 export const LineStatus = () => {
-    const [data, setData] = useState<any>(null);
+    const { lineStatus, loading, error } = useLineStatusController();
 
-
-  async function fetchLineData() {
-    try {
-      const res = await fetch(
-        `https://api.tfl.gov.uk/Line/Mode/tube,dlr,overground,elizabeth-line,tram/Status?detail=true&app_key=${process.env.NEXT_PUBLIC_DISRUPTIONS_API_KEY}` 
-      );
-      const data: string[] = await res.json();
-      setData(data);
-      console.log(data);
-    } catch (error: JSON | any) {
-      console.log(error);
-      // throw new Error({'error': error} as any);
-    }
-  }
-
-  useEffect(() => {
-    fetchLineData();
-  }, []);
-
-
+    if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="p-0 m-0" >
         <div className=" flex flex-col items-center mb-5">
 
+        {/* Show loading state */}
+        {loading && <div className="text-center p-4 text-white">Loading line status...</div>}
+
         {
-            data && data.map((item: any, index: number) => {
+            lineStatus && lineStatus.map((item: any, index: number) => {
                 return (
                     <div key={item.id} className={
                       ` pb-1 w-10/12`}>
@@ -66,14 +48,14 @@ export const LineStatus = () => {
 
                         <div className='collapse-title peer-checked:text-white-content flex'>
 
-                        <div>{item.lineStatuses[0].statusSeverityDescription === 'Good Service' ? <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> : <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>}</div>
+                        <div>{item.severity === 'Good Service' ? <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /> </svg>  : <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-10 w-10" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /> </svg>} </div>
 
 <div>
                           <h1 className='text-4xl'>{item.name}</h1>
-                        <h2>{item.lineStatuses[0].statusSeverityDescription}</h2>
+                        <h2>{item.severity}</h2>
                         </div>
                         </div>
-                        <h2 className='collapse-content peer-checked:text-white-content'>{item.lineStatuses[0].reason}</h2>
+                        {item.reason && <h2 className='collapse-content peer-checked:text-white-content'>{item.reason}</h2>}
                         {/* More info section shows list of affected stops */}
                         </div>
 
