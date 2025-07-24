@@ -136,7 +136,7 @@ export const SearchLocation = () => {
             <p className="text-gray-500 dark:text-gray-400">Select the stop you&apos;re looking for</p>
           </div>
           
-          {searchResults.total > 1 ? (
+          {searchResults && searchResults.total > 1 && searchResults.matches ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {searchResults.matches.map((item: any, index: number) => (
                 <button
@@ -206,7 +206,7 @@ export const SearchLocation = () => {
                 </div>
                 
                 <div className="grid grid-cols-3 gap-3">
-                  {arrivalObject[destination].slice(0, 3).map((timeToStation: number, timeIndex: number) => (
+                  {arrivalObject[destination] && arrivalObject[destination].slice(0, 3).map((timeToStation: number, timeIndex: number) => (
                     <div key={timeIndex} className="text-center">
                       {!isNaN(timeToStation) && (
                         <div className="bg-white/80 dark:bg-gray-800/80 rounded-xl p-3 border border-green-100 dark:border-green-800/30 hover:bg-white dark:hover:bg-gray-800 transition-colors">

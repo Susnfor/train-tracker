@@ -56,7 +56,7 @@ export default function AllDisruptions() {
                 )}
 
                 {/* Disruptions list */}
-                {!loading && disruptions.length > 0 && disruptions.map((disruption) => (
+                {!loading && disruptions && Array.isArray(disruptions) && disruptions.length > 0 && disruptions.map((disruption) => (
                     <div key={disruption.id} className="group">
                         <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/10 dark:to-orange-900/10 border border-red-200 dark:border-red-800/30 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300">
                             <details className="group">
