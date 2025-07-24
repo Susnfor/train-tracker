@@ -28,13 +28,15 @@ Embark on a smoother London Underground journey with Train Tracker – a persona
 
 ## Screenshots
 
-<img width="1403" alt="application screenshot, showing interface" src="https://github.com/Susnfor/train-tracker/assets/97429786/f2ce8ec8-fdee-4606-978a-01944ea8313c">
+<img width="1405" alt="Screenshot 2024-03-17 at 19 29 58" src="https://github.com/Susnfor/train-tracker/assets/97429786/3075d9de-26a1-4fff-ab7e-a926ed907b66">
+<img width="1408" alt="Screenshot 2024-03-17 at 19 31 44" src="https://github.com/Susnfor/train-tracker/assets/97429786/144f1546-0760-4dde-a954-fb472fa18b61">
+
 
 ## Technologies
-I used `next.js`, `tailwind css`, `daisyui` and `typescript` 
+Technologies + Frameworks used: `next.js`, `react`, `tailwind css`, `daisyui`, `typescript` 
 
 ## Setup
 - download or clone the repository
-- run `npm install`
-- ...
+- install dependencies `npm install`
+- run `npm run dev`
 
