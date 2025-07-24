@@ -16,14 +16,61 @@ return get('/api/allDisruptions');
 }
 
 export const processDisruptions = (data: any[]): ProcessedDisruption[] => {
-  data = data.filter(item => item.lineStatuses[0]?.statusSeverity > 10); // Filter out items with severity less than 10
-  return data.map((item) => ({
-    id: item.id,
-    name: item.name,
-    status: item.lineStatuses[0].statusSeverityDescription,
-    severity: item.lineStatuses[0].statusSeverity,
-    reason: item.lineStatuses[0].reason || '',
-    fromDate: new Date(item.lineStatuses[0].validityPeriods[0].fromDate.toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit'
-}))
-  })).sort((a, b) => a.severity - b.severity);
+  // Add comprehensive input validation
+  if (!data || !Array.isArray(data)) {
+    console.log('Invalid data received in processDisruptions:', data);
+    return [];
+  }
+  
+  try {
+    // Filter out items with severity less than 10, with comprehensive null checks
+    const filteredData = data.filter(item => {
+      // Check if item exists and has required structure
+      if (!item || !item.lineStatuses || !Array.isArray(item.lineStatuses)) {
+        return false;
+      }
+      
+      // Check if lineStatuses has at least one item
+      if (item.lineStatuses.length === 0) {
+        return false;
+      }
+      
+      // Check if first lineStatus exists and has statusSeverity
+      const firstLineStatus = item.lineStatuses[0];
+      if (!firstLineStatus || typeof firstLineStatus.statusSeverity !== 'number') {
+        return false;
+      }
+      
+      // Check if item has valid id and name (don't show unknown/invalid data)
+      if (!item.id || !item.name || item.id === 'unknown' || item.name === 'Unknown Line') {
+        return false;
+      }
+      
+      return firstLineStatus.statusSeverity > 10;
+    });
+    
+    return filteredData.map((item) => {
+      const lineStatus = item.lineStatuses[0];
+      const validityPeriod = lineStatus?.validityPeriods && 
+                            Array.isArray(lineStatus.validityPeriods) && 
+                            lineStatus.validityPeriods.length > 0 
+        ? lineStatus.validityPeriods[0] 
+        : null;
+        
+      return {
+        id: item.id,
+        name: item.name,
+        status: lineStatus?.statusSeverityDescription || 'Service Issue',
+        severity: lineStatus?.statusSeverity || 0,
+        reason: lineStatus?.reason || '',
+        fromDate: validityPeriod?.fromDate 
+          ? new Date(validityPeriod.fromDate) 
+          : new Date()
+      };
+    }).sort((a, b) => a.severity - b.severity);
+    
+  } catch (error) {
+    console.error('Error processing disruptions:', error);
+    return [];
+  }
 }
