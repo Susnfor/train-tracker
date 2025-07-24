@@ -46,7 +46,7 @@ export const processDisruptions = (data: any[]): ProcessedDisruption[] => {
         return false;
       }
       
-      return firstLineStatus.statusSeverity > 10;
+      return firstLineStatus.statusSeverity < 10; // 10 == good service, less than 10 indicates some disruption
     });
     
     return filteredData.map((item) => {
